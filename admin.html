@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RCS Warriors Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    :root {
+        --rcs-red: #cc0000;
+        --rcs-black: #111;
+        --rcs-white: #fff;
+        --gray: #555;
+    }
+
+    body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: #f2f2f2;
+    }
+
+    h2 {
+        margin-top: 30px;
+        color: var(--rcs-red);
+    }
+
+    .panel {
+        max-width: 800px;
+        margin: 30px auto;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    label { font-weight: 600; display:block; margin-top: 14px; }
+    input, textarea {
+        width: 100%; padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+    button {
+        margin-top: 14px;
+        padding: 10px 16px;
+        border: none;
+        background: var(--rcs-red);
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    button:hover { background: #a30000; }
+
+    .section-divider {
+        height: 2px;
+        background: #ddd;
+        margin: 40px 0;
+    }
+
+    /* Login Screen */
+    #loginBox {
+        max-width: 400px;
+        margin: 100px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+        text-align: center;
+    }
+
+    #loginBox input {
+        margin-top: 15px;
+        font-size: 18px;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="password" id="adminPass" placeholder="Enter password">
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" style="display:none;">
+    <div class="panel">
+
+        <h1>RCS Warriors Admin Panel</h1>
+        <p>Manage announcements, events, news & dates.</p>
+
+        <!-- ANNOUNCEMENTS -->
+        <h2>Announcements</h2>
+        <label>Title</label>
+        <input id="annTitle" placeholder="Christmas Concert — 12/9/25">
+
+        <label>Description</label>
+        <input id="annDesc" placeholder="6:00 PM in the chapel">
+
+        <button onclick="addAnnouncement()">Add Announcement</button>
+
+        <div class="section-divider"></div>
+
+        <!-- EVENTS -->
+        <h2>Events (Today / Tomorrow)</h2>
+        <label>Event Name</label>
+        <input id="eventText" placeholder="Warriors Basketball Game">
+
+        <label>Day</label>
+        <select id="eventDay">
+            <option value="today">Today</option>
+            <option value="tomorrow">Tomorrow</option>
+        </select>
+
+        <button onclick="addEvent()">Add Event</button>
+
+        <div class="section-divider"></div>
+
+        <!-- DATES TO NOTE -->
+        <h2>Dates to Note</h2>
+        <label>Date</label>
+        <input id="dateKey" placeholder="12/19/25">
+
+        <label>Description</label>
+        <input id="dateValue" placeholder="2025–2026: Q2 End">
+
+        <button onclick="addDate()">Add Date</button>
+
+        <div class="section-divider"></div>
+
+        <!-- NEWS -->
+        <h2>News Post</h2>
+        <label>Headline</label>
+        <input id="newsTitle" placeholder="Warriors Win Championship">
+
+        <label>Description</label>
+        <textarea id="newsDesc" rows="4" placeholder="Short summary..."></textarea>
+
+        <button onclick="addNews()">Add News Post</button>
+
+    </div>
+</div>
+
+<script>
+/* PASSWORD SYSTEM */
+const PASSWORD = "warriors123";  // ← CHANGE THIS!
+
+function login() {
+    let input = document.getElementById("adminPass").value;
+    if (input === PASSWORD) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+    } else {
+        alert("Incorrect password.");
+    }
+}
+
+/* STORAGE HANDLERS */
+function save(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+/* ANNOUNCEMENTS */
+function addAnnouncement() {
+    let title = document.getElementById("annTitle").value;
+    let desc = document.getElementById("annDesc").value;
+
+    let list = JSON.parse(localStorage.getItem("announcements") || "[]");
+
+    list.push({ title, desc });
+
+    save("announcements", list);
+    alert("Announcement added!");
+}
+
+/* EVENTS */
+function addEvent() {
+    let text = document.getElementById("eventText").value;
+    let day = document.getElementById("eventDay").value;
+
+    let list = JSON.parse(localStorage.getItem("events") || "{}");
+
+    if (!list[day]) list[day] = [];
+
+    list[day].push(text);
+
+    save("events", list);
+    alert("Event added!");
+}
+
+/* DATES TO NOTE */
+function addDate() {
+    let date = document.getElementById("dateKey").value;
+    let desc = document.getElementById("dateValue").value;
+
+    let list = JSON.parse(localStorage.getItem("dates") || "[]");
+
+    list.push({ date, desc });
+
+    save("dates", list);
+    alert("Date added!");
+}
+
+/* NEWS */
+function addNews() {
+    let title = document.getElementById("newsTitle").value;
+    let desc = document.getElementById("newsDesc").value;
+
+    let list = JSON.parse(localStorage.getItem("news") || "[]");
+
+    list.push({ title, desc });
+
+    save("news", list);
+    alert("News post added!");
+}
+</script>
+
+</body>
+</html>
