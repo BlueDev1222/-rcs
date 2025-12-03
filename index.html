@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RCS News</title>
+    <title>RCS Warriors News • Richmond Christian School</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -12,10 +12,18 @@
             padding: 0;
         }
 
+        :root {
+            --rcs-red: #dc2626;
+            --rcs-red-dark: #b91c1c;
+            --rcs-black: #111827;
+            --rcs-white: #f9fafb;
+            --rcs-gray: #6b7280;
+        }
+
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f3f5f9;
-            color: #111827;
+            background: #f3f4f6;
+            color: var(--rcs-black);
         }
 
         a {
@@ -25,10 +33,10 @@
 
         /* Navbar */
         header {
-            background: #1f2937;
-            color: #f9fafb;
+            background: radial-gradient(circle at top left, var(--rcs-red) 0, var(--rcs-black) 55%);
+            color: var(--rcs-white);
             padding: 12px 24px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
             position: sticky;
             top: 0;
             z-index: 50;
@@ -51,21 +59,37 @@
         }
 
         .logo-badge {
-            width: 34px;
-            height: 34px;
-            border-radius: 9px;
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 30%, #fee2e2 0, transparent 55%),
+                conic-gradient(from 220deg, var(--rcs-red) 0 120deg, var(--rcs-black) 120deg 360deg);
+            border: 2px solid rgba(0,0,0,0.6);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-weight: 800;
+            font-weight: 900;
             font-size: 18px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+        }
+
+        .logo-text-main {
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        .logo-text-sub {
+            font-size: 11px;
+            text-transform: uppercase;
+            opacity: 0.8;
         }
 
         .nav-links {
             display: flex;
             gap: 18px;
-            font-size: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
         }
 
         .nav-links a {
@@ -89,12 +113,31 @@
 
         /* Hero / top banner */
         .hero {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: #f9fafb;
+            background:
+                linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.92)),
+                url("https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=1200")
+                center/cover no-repeat;
+            /* You can replace that URL with a real RCS image, or remove the url() line completely */
+            color: var(--rcs-white);
             padding: 22px 22px 20px;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(15,23,42,0.3);
+            box-shadow: 0 10px 25px rgba(15,23,42,0.7);
             margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "WARRIORS";
+            position: absolute;
+            right: 10px;
+            bottom: -8px;
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            color: rgba(248,250,252,0.04);
+            pointer-events: none;
+            text-transform: uppercase;
         }
 
         .hero-tag {
@@ -103,9 +146,19 @@
             gap: 6px;
             padding: 3px 10px;
             border-radius: 999px;
-            background: rgba(15,23,42,0.5);
+            background: rgba(248,250,252,0.08);
             font-size: 12px;
             margin-bottom: 10px;
+            border: 1px solid rgba(248,250,252,0.15);
+            text-transform: uppercase;
+        }
+
+        .hero-tag span.dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34,197,94,0.8);
         }
 
         .hero h1 {
@@ -115,13 +168,17 @@
 
         .hero p {
             font-size: 14px;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         .hero-meta {
             margin-top: 12px;
             font-size: 12px;
             opacity: 0.9;
+        }
+
+        .hero-meta strong {
+            color: #fee2e2;
         }
 
         /* Sections */
@@ -134,14 +191,16 @@
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            text-transform: uppercase;
         }
 
         h2.section-title span.dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #2563eb;
+            width: 9px;
+            height: 9px;
+            border-radius: 2px;
+            background: var(--rcs-red);
+            box-shadow: 0 0 0 2px rgba(220,38,38,0.25);
         }
 
         /* News cards */
@@ -158,39 +217,65 @@
             box-shadow: 0 4px 10px rgba(15,23,42,0.08);
             border: 1px solid #e5e7eb;
             transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--rcs-red), var(--rcs-red-dark));
         }
 
         .news-card:hover {
             transform: translateY(-1px);
-            box-shadow: 0 8px 18px rgba(15,23,42,0.12);
-            border-color: #bfdbfe;
+            box-shadow: 0 8px 18px rgba(15,23,42,0.15);
+            border-color: #fecaca;
         }
 
         .news-tag {
             display: inline-block;
             font-size: 11px;
-            padding: 3px 8px;
+            padding: 3px 8px 3px 18px;
             border-radius: 999px;
-            background: #eff6ff;
-            color: #1d4ed8;
+            background: #fee2e2;
+            color: var(--rcs-red-dark);
             margin-bottom: 6px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .news-tag::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--rcs-red-dark);
         }
 
         .news-title {
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 4px;
         }
 
         .news-meta {
             font-size: 11px;
-            color: #6b7280;
+            color: var(--rcs-gray);
             margin-bottom: 6px;
         }
 
         .news-desc {
             font-size: 13px;
-            color: #4b5563;
+            color: #374151;
         }
 
         /* Sidebar */
@@ -211,6 +296,7 @@
         .side-card h3 {
             font-size: 15px;
             margin-bottom: 8px;
+            text-transform: uppercase;
         }
 
         .side-card ul {
@@ -226,15 +312,23 @@
             display: inline-block;
             padding: 2px 7px;
             border-radius: 999px;
-            background: #e5f0ff;
+            background: #fee2e2;
+            color: var(--rcs-red-dark);
             font-size: 11px;
             margin-left: 6px;
+            text-transform: uppercase;
         }
 
         .note {
             font-size: 11px;
-            color: #6b7280;
+            color: var(--rcs-gray);
             margin-top: 8px;
+        }
+
+        .small-divider {
+            margin: 8px 0;
+            height: 1px;
+            background: #e5e7eb;
         }
 
         /* Footer */
@@ -243,12 +337,16 @@
             margin: 0 auto 24px;
             padding: 0 16px;
             font-size: 11px;
-            color: #6b7280;
+            color: var(--rcs-gray);
             text-align: center;
         }
 
         footer span {
             opacity: 0.9;
+        }
+
+        footer strong {
+            color: var(--rcs-red-dark);
         }
 
         @media (max-width: 800px) {
@@ -261,7 +359,7 @@
             }
 
             .nav-links {
-                display: none; /* simplify on mobile */
+                display: none; /* simple mobile version */
             }
         }
     </style>
@@ -271,16 +369,16 @@
 <header>
     <div class="nav-container">
         <div class="logo">
-            <div class="logo-badge">R</div>
+            <div class="logo-badge">W</div>
             <div>
-                <div style="font-size:14px;">RCS News</div>
-                <div style="font-size:11px; opacity:0.7;">Riverview Community School • Student Portal</div>
-                <!-- Change the tagline above to match your real school name -->
+                <div class="logo-text-main">RCS Warriors News</div>
+                <div class="logo-text-sub">Richmond Christian School</div>
             </div>
         </div>
         <nav class="nav-links">
             <a href="#latest">News</a>
             <a href="#events">Events</a>
+            <a href="#athletics">Athletics</a>
             <a href="#clubs">Clubs</a>
         </nav>
     </div>
@@ -291,33 +389,36 @@
         <!-- HERO -->
         <section class="hero">
             <div class="hero-tag">
-                <span>●</span> Live from RCS
+                <span class="dot"></span> Official Student News • Warriors
             </div>
-            <h1>Welcome to RCS News</h1>
-            <p>Announcements, events, and stories from around the RCS campus — all in one place.</p>
+            <h1>Welcome to RCS Warriors News</h1>
+            <p>
+                The central hub for announcements, events, athletics, and stories from
+                <strong>Richmond Christian School</strong>.
+            </p>
             <div class="hero-meta">
-                Last updated: <strong><!-- You can update this date manually -->December 3, 2025</strong>
+                Last updated: <strong>December 3, 2025</strong> • Home of the Warriors
             </div>
         </section>
 
         <!-- LATEST NEWS -->
         <section id="latest">
             <h2 class="section-title">
-                <span class="dot"></span> Latest News
+                <span class="dot"></span> Latest RCS News
             </h2>
 
             <div class="news-grid">
                 <!-- NEWS ITEM 1 -->
                 <article class="news-card">
-                    <div class="news-tag">Announcement</div>
+                    <div class="news-tag">School Wide</div>
                     <h3 class="news-title">RCS Website</h3>
-                    <div class="news-meta">Posted by RCS News • Dec 3, 2025</div>
+                    <div class="news-meta">Posted by RCS Office • Dec 3, 2025</div>
                     <p class="news-desc">
                         We now have this website.
                     </p>
                 </article>
 
-                <!-- TEMPLATE NEWS ITEM (you can copy this) -->
+                <!-- TEMPLATE NEWS ITEM (copy & edit for real posts) -->
                 <!--
                 <article class="news-card">
                     <div class="news-tag">Category</div>
@@ -334,6 +435,7 @@
 
     <!-- SIDEBAR -->
     <aside>
+        <!-- EVENTS -->
         <section id="events" class="side-card">
             <h3>Upcoming Events</h3>
             <ul>
@@ -343,26 +445,40 @@
             </ul>
         </section>
 
-        <section id="clubs" class="side-card">
-            <h3>Featured Clubs</h3>
+        <!-- ATHLETICS -->
+        <section id="athletics" class="side-card">
+            <h3>Warriors Athletics</h3>
             <ul>
-                <li>Clubs are removed <span class="pill">New</span></li>
+                <li>SWIM - TES Kick-off Meet • <em>Friday, December 5, 2025</em></li>
+            </ul>
+            <div class="small-divider"></div>
+            <p class="note">
+            </p>
+        </section>
+
+        <!-- CLUBS -->
+        <section id="clubs" class="side-card">
+            <h3>Clubs & Activities</h3>
+            <ul>
+                <li>Clubs are removed<span class="pill">Featured</span></li>
                 <li>Clubs are removed</li>
             </ul>
         </section>
 
+        <!-- SUBMIT STORY -->
         <section class="side-card">
-            <h3>Submit Your Story</h3>
+            <h3>Submit a Story</h3>
             <p style="font-size:13px;">
-                Have news, a club event, or something cool happening at RCS?
-                Ask a teacher or admin to send it to the RCS News team!
+                Have an idea, event, or Warrior victory to share?
+                Talk to a teacher or the RCS office about submitting it to
+                <strong>RCS Warriors News</strong>.
             </p>
         </section>
     </aside>
 </main>
 
 <footer>
-    <span>© <span id="year"></span> RCS News. Student-created site for school updates.</span>
+    <span>© <span id="year"></span> <strong>Richmond Christian School</strong> • RCS Warriors News.</span>
 </footer>
 
 <script>
