@@ -220,8 +220,9 @@
    PASSWORD SECURITY
 ------------------------------------------------------ */
 
-const storedHash = "6faa98596285e76d92d2f991b2c8de91505fd96b2bb1054dbd5cbabd262bbf61"; 
-// This is SHA-256 hash of: RCSAdmin
+const storedHash =
+"717f86f74921594d16e3f68f2c236503d17a60062e03d436d84fd4a034a6b266"; 
+// SHA-256 hash of: RCS
 
 async function sha256(str) {
     const buf = new TextEncoder().encode(str);
@@ -421,7 +422,7 @@ function loadNews() {
 }
 
 /* ------------------------------------------------------
-   LOAD ALL
+   LOAD ALL SECTIONS
 ------------------------------------------------------ */
 function loadAll() {
     loadAnnouncements();
