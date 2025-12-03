@@ -1,358 +1,523 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>YouTube.com Clone</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RCS Warriors News • Richmond Christian School</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/video.css">
-    <link rel="stylesheet" href="styles/sidebar.css">
-  </head>
-  <body>
-    <header class="header">
-      <div class="left-section">
-        <img class="hamburger-menu" src="icons/hamburger-menu.svg">
-        <img class="youtube-logo" src="icons/youtube-logo.svg">
-      </div>
-      <div class="middle-section">
-        <input class="search-bar" type="text" placeholder="Search">
-        <button class="search-button">
-          <img class="search-icon" src="icons/search.svg">
-          <div class="tooltip">Search</div>
-        </button>
-        <!-- Put position absolute inside position relative -->
-        <button class="voice-search-button">
-          <img class="voice-search-icon" src="icons/voice-search-icon.svg">
-          <div class="tooltip">Search with your voice</div>
-        </button>
-      </div>
-      <div class="right-section">
-        <div class="upload-icon-container">
-          <img class="upload-icon" src="icons/upload.svg">
-          <div class="tooltip">Create</div>
-        </div>
-        <div class="youtube-apps-icon-container">
-          <img class="youtube-apps-icon" src="icons/youtube-apps.svg">
-          <div class="tooltip">YouTube Apps</div>
-        </div>
-        <div class="notifications-icon-container">
-          <img class="notifications-icon" src="icons/notifications.svg">
-          <div class="notifications-count">3</div>
-          <div class="tooltip">Notifications</div>
-        </div>
-        <img class="current-user-picture" src="channel-pictures/my-channel.jpeg">
-      </div>
-    </header>
+        :root {
+            --rcs-red: #dc2626;
+            --rcs-red-dark: #b91c1c;
+            --rcs-black: #111827;
+            --rcs-white: #f9fafb;
+            --rcs-gray: #6b7280;
+        }
 
-    <nav class="sidebar">
-      <div class="sidebar-link">
-        <img src="icons/home.svg">
-        <div>Home</div>
-      </div>
-      <div class="sidebar-link">
-        <img src="icons/explore.svg">
-        <div>Explore</div>
-      </div>
-      <div class="sidebar-link">
-        <img src="icons/subscriptions.svg">
-        <div>Subscriptions</div>
-      </div>
-      <div class="sidebar-link">
-        <img src="icons/originals.svg">
-        <div>Originals</div>
-      </div>
-      <div class="sidebar-link">
-        <img src="icons/youtube-music.svg">
-        <div>YouTube Music</div>
-      </div>
-      <div class="sidebar-link">
-        <img src="icons/library.svg">
-        <div>Library</div>
-      </div>
-    </nav>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f3f4f6;
+            color: var(--rcs-black);
+        }
 
-    <main>
-      <section class="video-grid">
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-1.webp">
-            <div class="video-time">14:20</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-1.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                Talking Tech and AI with Google CEO Sundar Pichai!
-              </p>
-              <p class="video-author">
-                Marques Brownlee
-              </p>
-              <p class="video-stats">
-                3.4M views &#183; 6 months ago
-              </p>
-            </div>
-          </div>
-        </div>
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-2.webp">
-            <div class="video-time">8:22</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-2.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                Try Not To Laugh Challenge #9
-              </p>
-              <p class="video-author">
-                Markiplier
-              </p>
-              <p class="video-stats">
-                19M views &#183; 4 years ago
-              </p>
-            </div>
-          </div>
-        </div>
+        /* Navbar */
+        header {
+            background: radial-gradient(circle at top left, var(--rcs-red) 0, var(--rcs-black) 55%);
+            color: var(--rcs-white);
+            padding: 12px 24px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-3.webp">
-            <div class="video-time">9:13</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-3.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                Crazy Tik Toks Taken Moments Before DISASTER
-              </p>
-              <p class="video-author">
-                SSSniperWolf
-              </p>
-              <p class="video-stats">
-                12M views &#183; 1 year ago
-              </p>
-            </div>
-          </div>
-        </div>
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-4.webp">
-            <div class="video-time">22:09</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-4.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                The Simplest Math Problem No One Can Solve - Collatz Conjecture
-              </p>
-              <p class="video-author">
-                Veritasium
-              </p>
-              <p class="video-stats">
-                18M views &#183; 4 months ago
-              </p>
-            </div>
-          </div>
-        </div>
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-5.webp">
-            <div class="video-time">11:17</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-5.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                Kadane's Algorithm to Maximum Sum Subarray Problem
-              </p>
-              <p class="video-author">
-                CS Dojo
-              </p>
-              <p class="video-stats">
-                519K views &#183; 5 years ago
-              </p>
-            </div>
-          </div>
-        </div>
+        .logo-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 30%, #fee2e2 0, transparent 55%),
+                conic-gradient(from 220deg, var(--rcs-red) 0 120deg, var(--rcs-black) 120deg 360deg);
+            border: 2px solid rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            font-size: 18px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-6.webp">
-            <div class="video-time">19:59</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-6.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                Anything You Can Fit In The Circle I’ll Pay For
-              </p>
-              <p class="video-author">
-                MrBeast
-              </p>
-              <p class="video-stats">
-                141M views &#183; 1 year ago
-              </p>
-            </div>
-          </div>
-        </div>
+        .logo-text-main {
+            font-size: 15px;
+            text-transform: uppercase;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-7.webp">
-            <div class="video-time">10:13</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-7.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                Why Planes Don't Fly Over Tibet
-              </p>
-              <p class="video-author">
-                RealLifeLore
-              </p>
-              <p class="video-stats">
-                6.6M views &#183; 1 year ago
-              </p>
-            </div>
-          </div>
-        </div>
+        .logo-text-sub {
+            font-size: 11px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-8.webp">
-            <div class="video-time">7:12</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-8.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                Inside The World's Biggest Passenger Plane
-              </p>
-              <p class="video-author">
-                Tech Vision
-              </p>
-              <p class="video-stats">
-                3.7M views &#183; 10 months ago
-              </p>
-            </div>
-          </div>
-        </div>
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-9.webp">
-            <div class="video-time">13:17</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-9.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                The SECRET to Super Human STRENGTH
-              </p>
-              <p class="video-author">
-                ThenX
-              </p>
-              <p class="video-stats">
-                20M views &#183; 3 years ago
-              </p>
-            </div>
-          </div>
-        </div>
+        .nav-links a {
+            opacity: 0.85;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-10.webp">
-            <div class="video-time">7:53</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-10.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                How The World's Largest Cruise Ship Makes 30,000 Meals Every Day
-              </p>
-              <p class="video-author">
-                Business Insider
-              </p>
-              <p class="video-stats">
-                14M views &#183; 1 year ago
-              </p>
-            </div>
-          </div>
-        </div>
+        .nav-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-11.webp">
-            <div class="video-time">4:10</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-11.jpeg">
-            </div>
-            <div class="video-info">
-              <p class="video-title">
-                Dubai's Crazy Underwater Train and Other Things #Only in Dubai
-              </p>
-              <p class="video-author">
-                Destination Tips
-              </p>
-              <p class="video-stats">
-                3M views &#183; 1 year ago
-              </p>
-            </div>
-          </div>
-        </div>
+        /* Main layout */
+        main {
+            max-width: 1100px;
+            margin: 18px auto 32px;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
 
-        <div class="video-preview">
-          <div class="thumbnail-row">
-            <img class="thumbnail" src="thumbnails/thumbnail-12.webp">
-            <div class="video-time">4:51</div>
-          </div>
-          <div class="video-info-grid">
-            <div class="channel-picture">
-              <img class="profile-picture" src="channel-pictures/channel-12.jpeg">
+        /* Hero / top banner */
+        .hero {
+            background:
+                linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.92)),
+                url("https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=1200")
+                center/cover no-repeat;
+            /* You can replace that URL with a real RCS image, or remove the url() line completely */
+            color: var(--rcs-white);
+            padding: 22px 22px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(15,23,42,0.7);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "WARRIORS";
+            position: absolute;
+            right: 10px;
+            bottom: -8px;
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            color: rgba(248,250,252,0.04);
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: rgba(248,250,252,0.08);
+            font-size: 12px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(248,250,252,0.15);
+            text-transform: uppercase;
+        }
+
+        .hero-tag span.dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34,197,94,0.8);
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+        .hero p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .hero-meta {
+            margin-top: 12px;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .hero-meta strong {
+            color: #fee2e2;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2.section-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+
+        h2.section-title span.dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 2px;
+            background: var(--rcs-red);
+            box-shadow: 0 0 0 2px rgba(220,38,38,0.25);
+        }
+
+        /* News cards */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .news-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 14px 14px 13px;
+            box-shadow: 0 4px 10px rgba(15,23,42,0.08);
+            border: 1px solid #e5e7eb;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--rcs-red), var(--rcs-red-dark));
+        }
+
+        .news-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(15,23,42,0.15);
+            border-color: #fecaca;
+        }
+
+        .news-tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 8px 3px 18px;
+            border-radius: 999px;
+            background: #fee2e2;
+            color: var(--rcs-red-dark);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .news-tag::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--rcs-red-dark);
+        }
+
+        .news-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .news-meta {
+            font-size: 11px;
+            color: var(--rcs-gray);
+            margin-bottom: 6px;
+        }
+
+        .news-desc {
+            font-size: 13px;
+            color: #374151;
+        }
+
+        /* Sidebar */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .side-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 4px 10px rgba(15,23,42,0.08);
+            border: 1px solid #e5e7eb;
+        }
+
+        .side-card h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .side-card ul {
+            list-style: none;
+            font-size: 13px;
+        }
+
+        .side-card li + li {
+            margin-top: 4px;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 999px;
+            background: #fee2e2;
+            color: var(--rcs-red-dark);
+            font-size: 11px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .note {
+            font-size: 11px;
+            color: var(--rcs-gray);
+            margin-top: 8px;
+        }
+
+        .small-divider {
+            margin: 8px 0;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        /* Footer */
+        footer {
+            max-width: 1100px;
+            margin: 0 auto 24px;
+            padding: 0 16px;
+            font-size: 11px;
+            color: var(--rcs-gray);
+            text-align: center;
+        }
+
+        footer span {
+            opacity: 0.9;
+        }
+
+        footer strong {
+            color: var(--rcs-red-dark);
+        }
+
+        @media (max-width: 800px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                position: static;
+            }
+
+            .nav-links {
+                display: none; /* simple mobile version */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-badge">W</div>
+            <div>
+                <div class="logo-text-main">RCS Warriors News</div>
+                <div class="logo-text-sub">Richmond Christian School</div>
             </div>
-            <div class="video-info">
-              <p class="video-title">
-                What would happen if you didn’t drink water? - Mia Nacamulli
-              </p>
-              <p class="video-author">
-                TED-Ed
-              </p>
-              <p class="video-stats">
-                12M views &#183; 5 years ago
-              </p>
-            </div>
-          </div>
         </div>
-      </section>
-    </main>
-  </body>
+        <nav class="nav-links">
+            <a href="#latest">News</a>
+            <a href="#events">Events</a>
+            <a href="#athletics">Athletics</a>
+            <a href="#clubs">Clubs</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-tag">
+                <span class="dot"></span> Official Student News • Warriors
+            </div>
+            <h1>Welcome to RCS Warriors News</h1>
+            <p>
+                The central hub for announcements, events, athletics, and stories from
+                <strong>Richmond Christian School</strong>.
+            </p>
+            <div class="hero-meta">
+                Last updated: <strong>December 3, 2025</strong> • Home of the Warriors
+            </div>
+        </section>
+
+        <!-- LATEST NEWS -->
+        <section id="latest">
+            <h2 class="section-title">
+                <span class="dot"></span> Latest RCS News
+            </h2>
+
+            <div class="news-grid">
+                <!-- NEWS ITEM 1 -->
+                <article class="news-card">
+                    <div class="news-tag">School Wide</div>
+                    <h3 class="news-title">Christmas Chapel & Spirit Day Announced</h3>
+                    <div class="news-meta">Posted by RCS Office • Dec 3, 2025</div>
+                    <p class="news-desc">
+                        Richmond Christian School will host a special Christmas chapel next Friday.
+                        Students are encouraged to wear red, black, and white Warrior gear to show school spirit.
+                        Check your homeroom announcements for the adjusted schedule.
+                    </p>
+                </article>
+
+                <!-- NEWS ITEM 2 -->
+                <article class="news-card">
+                    <div class="news-tag">Athletics</div>
+                    <h3 class="news-title">Warriors Basketball Home Game Tonight</h3>
+                    <div class="news-meta">Posted by Athletics Dept. • Dec 2, 2025</div>
+                    <p class="news-desc">
+                        The RCS Warriors basketball team takes on their district rival tonight in the RCS gym.
+                        Tip-off is at 6:30 PM. All students get in free with a valid school ID.
+                        Come loud, wear red, and support your Warriors!
+                    </p>
+                </article>
+
+                <!-- NEWS ITEM 3 -->
+                <article class="news-card">
+                    <div class="news-tag">Academics</div>
+                    <h3 class="news-title">End of Quarter Reminder</h3>
+                    <div class="news-meta">Posted by Guidance • Dec 1, 2025</div>
+                    <p class="news-desc">
+                        The quarter ends next week. Make sure any missing assignments are turned in and talk to your
+                        teachers about retakes or extra help. Progress reports will be sent home the following Friday.
+                    </p>
+                </article>
+
+                <!-- TEMPLATE NEWS ITEM (copy & edit for real posts) -->
+                <!--
+                <article class="news-card">
+                    <div class="news-tag">Category</div>
+                    <h3 class="news-title">Your news title here</h3>
+                    <div class="news-meta">Posted by ____ • Month 00, 2025</div>
+                    <p class="news-desc">
+                        Short description of your news. Say what is happening, when, and who it affects.
+                    </p>
+                </article>
+                -->
+            </div>
+        </section>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside>
+        <!-- EVENTS -->
+        <section id="events" class="side-card">
+            <h3>Upcoming Events</h3>
+            <ul>
+                <li><strong>Dec 5</strong> – Chapel & Worship</li>
+                <li><strong>Dec 8</strong> – Warriors Basketball Home Game</li>
+                <li><strong>Dec 15</strong> – Christmas Concert</li>
+                <li><strong>Dec 20</strong> – Last Day of Classes Before Break</li>
+            </ul>
+            <p class="note">Edit these dates in the HTML to match real Richmond Christian School events.</p>
+        </section>
+
+        <!-- ATHLETICS -->
+        <section id="athletics" class="side-card">
+            <h3>Warriors Athletics</h3>
+            <ul>
+                <li>Basketball vs. Rivals • <em>Tonight, 6:30 PM</em></li>
+                <li>Soccer Conditioning • After school, Mon/Wed</li>
+                <li>Tryouts • Check the athletics board near the gym</li>
+            </ul>
+            <div class="small-divider"></div>
+            <p class="note">
+                Replace these with actual team schedules, scores, or tournament info for RCS Warriors.
+            </p>
+        </section>
+
+        <!-- CLUBS -->
+        <section id="clubs" class="side-card">
+            <h3>Clubs & Activities</h3>
+            <ul>
+                <li>Student Council <span class="pill">Featured</span></li>
+                <li>Worship Team</li>
+                <li>Robotics / STEM Club</li>
+                <li>Art & Media Club</li>
+            </ul>
+            <p class="note">Customize this list with the real clubs offered at Richmond Christian School.</p>
+        </section>
+
+        <!-- SUBMIT STORY -->
+        <section class="side-card">
+            <h3>Submit a Story</h3>
+            <p style="font-size:13px;">
+                Have an idea, event, or Warrior victory to share?
+                Talk to a teacher or the RCS office about submitting it to
+                <strong>RCS Warriors News</strong>.
+            </p>
+        </section>
+    </aside>
+</main>
+
+<footer>
+    <span>© <span id="year"></span> <strong>Richmond Christian School</strong> • RCS Warriors News.</span>
+</footer>
+
+<script>
+    // Makes the year in the footer stay up to date
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
 </html>
