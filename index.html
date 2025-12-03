@@ -1,172 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>RCS Warriors News • Richmond Christian School</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>RCS Warriors News • Richmond Christian School</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+    :root {
+        --rcs-red: #cc0000;
+        --rcs-red-dark: #990000;
+        --rcs-black: #111;
+        --rcs-white: #fff;
+        --gray: #555;
+        --light: #f4f4f4;
+    }
 
-        :root {
-            --rcs-red: #cc0000;
-            --rcs-red-dark: #990000;
-            --rcs-black: #111;
-            --rcs-white: #fff;
-            --gray: #555;
-            --light: #f4f4f4;
-        }
+    body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        background: #eee;
+        color: var(--rcs-black);
+    }
 
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #eee;
-            color: var(--rcs-black);
-        }
+    header {
+        background: var(--rcs-black);
+        padding: 14px 20px;
+        color: var(--rcs-white);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
 
-        a { text-decoration: none; color: inherit; }
+    .nav-container {
+        max-width: 1100px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-        /* Navbar */
-        header {
-            background: var(--rcs-black);
-            color: var(--rcs-white);
-            padding: 14px 24px;
-            position: sticky;
-            top: 0;
-            z-index: 99;
-        }
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .logo-badge {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--rcs-red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        color: white;
+        font-size: 20px;
+    }
 
-        .logo { display: flex; align-items: center; gap: 10px; }
-        .logo-badge {
-            width: 38px; height: 38px;
-            background: var(--rcs-red);
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-weight: 900; color: white; font-size: 19px;
-        }
+    main {
+        max-width: 1100px;
+        margin: 20px auto;
+        padding: 0 16px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+    }
 
-        main {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 0 16px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 24px;
-        }
+    .hero {
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.75)),
+            url("https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=1200") center/cover;
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
 
-        /* Hero */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.85)),
-                        url("https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=1200")
-                        center/cover no-repeat;
-            color: white;
-            padding: 24px;
-            border-radius: 14px;
-            margin-bottom: 20px;
-        }
+    .announcements-bar, .events-box, .dates-box {
+        background: white;
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
 
-        .hero h1 { font-size: 28px; margin-bottom: 6px; }
+    .ann-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
 
-        /* Announcements Bar */
-        .announcements-bar {
-            background: white;
-            border: 2px solid var(--rcs-black);
-            border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
+    .ann-item {
+        flex: 1;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
 
-        .ann-row {
-            display: flex;
-            gap: 40px;
-            justify-content: space-between;
-        }
+    .ann-item span.icon {
+        font-size: 24px;
+    }
 
-        .ann-item {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 15px;
-        }
+    .tabs {
+        display: flex;
+        gap: 14px;
+        border-bottom: 2px solid #ddd;
+        margin-bottom: 12px;
+    }
 
-        .ann-item span.icon {
-            font-size: 24px;
-        }
+    .tab {
+        padding-bottom: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--gray);
+    }
 
-        /* Events Box */
-        .events-box {
-            background: white;
-            border-radius: 12px;
-            padding: 14px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
+    .active {
+        border-bottom: 3px solid var(--rcs-red);
+        color: var(--rcs-red-dark);
+    }
 
-        .tabs {
-            display: flex; gap: 14px;
-            border-bottom: 2px solid #ddd;
-            margin-bottom: 12px;
-        }
+    .news-card {
+        background: white;
+        padding: 14px;
+        border-radius: 10px;
+        border-left: 4px solid var(--rcs-red);
+        margin-bottom: 12px;
+    }
 
-        .tab {
-            padding-bottom: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
+    aside div {
+        background: white;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+    }
 
-        .active {
-            border-bottom: 3px solid var(--rcs-red);
-            color: var(--rcs-red-dark);
-        }
-
-        /* Dates to Note */
-        .dates-box {
-            background: white;
-            border-radius: 12px;
-            padding: 14px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-
-        .dates-box ul { list-style: none; }
-        .dates-box li {
-            padding: 6px 0;
-            font-size: 14px;
-        }
-
-        /* News Sections (original) */
-        h2.section-title {
-            font-size: 18px;
-            margin-bottom: 10px;
-            display: flex; align-items: center;
-            gap: 8px;
-        }
-
-        .dot { width: 9px; height: 9px; background: var(--rcs-red); }
-
-        .news-card {
-            background: white;
-            padding: 14px;
-            border-radius: 10px;
-            border-left: 4px solid var(--rcs-red-dark);
-            margin-bottom: 12px;
-        }
-
-        aside { display: flex; flex-direction: column; gap: 20px; }
-
-        @media (max-width: 800px) {
-            main { grid-template-columns: 1fr; }
-            .ann-row { flex-direction: column; gap: 18px; }
-        }
-    </style>
+    @media(max-width: 800px) {
+        main { grid-template-columns: 1fr; }
+        .ann-row { flex-direction: column; }
+    }
+</style>
 </head>
 <body>
 
@@ -182,86 +155,46 @@
     </div>
 </header>
 
-<!-- MAIN CONTENT -->
 <main>
     <div>
 
         <!-- HERO -->
-        <section class="hero">
+        <div class="hero">
             <h1>Welcome to RCS Warriors News</h1>
-            <p>The latest announcements and updates from Richmond Christian School.</p>
-        </section>
+            <p>Your official student news hub for Richmond Christian School.</p>
+        </div>
 
-        <!-- 🔴 ANNOUNCEMENTS BAR -->
-        <section class="announcements-bar">
-            <strong style="font-size:16px; display:block; margin-bottom:10px;">Announcements</strong>
-            <div class="ann-row">
+        <!-- ANNOUNCEMENTS -->
+        <div class="announcements-bar">
+            <h2>Announcements</h2>
+            <div id="announcementsList" class="ann-row"></div>
+        </div>
 
-                <div class="ann-item">
-                    <span class="icon">🎵</span>
-                    <div>
-                        <strong>Christmas Concert — 12/9/25</strong><br>
-                        <span style="font-size:13px;">6:00 PM in the Chapel</span>
-                    </div>
-                </div>
-
-                <div class="ann-item">
-                    <span class="icon">🎁</span>
-                    <div>
-                        <strong>Christmas Market — 12/15 to 12/17/25</strong>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 🔴 EVENTS BOX -->
-        <section class="events-box">
-            <strong style="font-size:16px;">Events</strong>
-
+        <!-- EVENTS -->
+        <div class="events-box">
+            <h2>Events</h2>
             <div class="tabs">
-                <div class="tab active">Today</div>
-                <div class="tab">Tomorrow</div>
+                <div class="tab active" onclick="showEvents('today')">Today</div>
+                <div class="tab" onclick="showEvents('tomorrow')">Tomorrow</div>
             </div>
+            <p id="eventsList" style="color:var(--gray);"></p>
+        </div>
 
-            <p style="color:var(--gray); font-size:14px;">No events found.</p>
-        </section>
+        <!-- DATES -->
+        <div class="dates-box">
+            <h2>Dates to Note</h2>
+            <ul id="datesList"></ul>
+        </div>
 
-        <!-- 🔴 DATES TO NOTE -->
-        <section class="dates-box">
-            <strong style="font-size:16px;">School Calendar: Dates to Note</strong>
-
-            <ul>
-                <li><strong>12/19/25 —</strong> 2025–2026: Q2 End</li>
-                <li><strong>1/5/26 —</strong> 2025–2026: Q3 Begin</li>
-                <li><strong>3/6/26 —</strong> 2025–2026: Q3 End</li>
-                <li><strong>3/9/26 —</strong> 2025–2026: Q4 Begin</li>
-                <li><strong>5/22/26 —</strong> 2025–2026: Q4 End</li>
-            </ul>
-        </section>
-
-        <!-- ORIGINAL NEWS SECTION STILL HERE -->
-        <section id="latest">
-            <h2 class="section-title"><span class="dot"></span> Latest News</h2>
-
-            <div class="news-card">
-                <strong>Christmas Chapel Announced</strong>
-                <p>Special chapel service next week — wear Warrior colors!</p>
-            </div>
-
-            <div class="news-card">
-                <strong>Warriors Basketball Home Game</strong>
-                <p>Tip-off at 6:30 PM — students enter free.</p>
-            </div>
-
-        </section>
+        <!-- NEWS -->
+        <h2>Latest News</h2>
+        <div id="newsList"></div>
 
     </div>
 
-    <!-- SIDEBAR -->
     <aside>
-        <div class="dates-box">
-            <strong>Featured Clubs</strong>
+        <div>
+            <h3>Featured Clubs</h3>
             <ul>
                 <li>Worship Team</li>
                 <li>Robotics</li>
@@ -269,8 +202,73 @@
             </ul>
         </div>
     </aside>
-
 </main>
+
+
+<script>
+/* Load Announcements */
+function loadAnnouncements() {
+    let list = JSON.parse(localStorage.getItem("announcements") || "[]");
+    let container = document.getElementById("announcementsList");
+    container.innerHTML = "";
+
+    list.forEach(a => {
+        container.innerHTML += `
+            <div class="ann-item">
+                <span class="icon">📢</span>
+                <div>
+                    <strong>${a.title}</strong><br>
+                    <span style="font-size:13px;">${a.desc}</span>
+                </div>
+            </div>
+        `;
+    });
+}
+
+/* Load Events */
+function showEvents(day) {
+    let allEvents = JSON.parse(localStorage.getItem("events") || "{}");
+    let events = allEvents[day] || [];
+    document.getElementById("eventsList").innerHTML =
+        events.length === 0 ? "No events found." : events.map(e => "• " + e).join("<br>");
+
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".tab")[day === "today" ? 0 : 1].classList.add("active");
+}
+
+/* Load Dates to Note */
+function loadDates() {
+    let list = JSON.parse(localStorage.getItem("dates") || "[]");
+    let container = document.getElementById("datesList");
+    container.innerHTML = "";
+
+    list.forEach(d => {
+        container.innerHTML += `<li><strong>${d.date}</strong> — ${d.desc}</li>`;
+    });
+}
+
+/* Load News */
+function loadNews() {
+    let list = JSON.parse(localStorage.getItem("news") || "[]");
+    let container = document.getElementById("newsList");
+    container.innerHTML = "";
+
+    list.forEach(n => {
+        container.innerHTML += `
+            <div class="news-card">
+                <strong>${n.title}</strong>
+                <p>${n.desc}</p>
+            </div>
+        `;
+    });
+}
+
+/* Init */
+loadAnnouncements();
+showEvents("today");
+loadDates();
+loadNews();
+</script>
 
 </body>
 </html>
