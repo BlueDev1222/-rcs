@@ -10,6 +10,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: background 0.25s, color 0.25s;
         }
 
         :root {
@@ -18,12 +19,26 @@
             --rcs-black: #111827;
             --rcs-white: #f9fafb;
             --rcs-gray: #6b7280;
+
+            /* Light mode */
+            --bg: #f3f4f6;
+            --text: var(--rcs-black);
+            --card-bg: #ffffff;
+            --card-border: #e5e7eb;
+        }
+
+        /* Dark Mode Theme */
+        body.dark {
+            --bg: #0f172a;
+            --text: #e2e8f0;
+            --card-bg: #1e293b;
+            --card-border: #334155;
         }
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f3f4f6;
-            color: var(--rcs-black);
+            background: var(--bg);
+            color: var(--text);
         }
 
         a {
@@ -101,6 +116,14 @@
             text-decoration: underline;
         }
 
+        /* Dark mode toggle button */
+        .toggle-btn {
+            cursor: pointer;
+            font-size: 20px;
+            margin-left: 10px;
+            user-select: none;
+        }
+
         /* Main layout */
         main {
             max-width: 1100px;
@@ -135,8 +158,6 @@
             font-weight: 900;
             letter-spacing: 0.3em;
             color: rgba(248,250,252,0.04);
-            pointer-events: none;
-            text-transform: uppercase;
         }
 
         .hero-tag {
@@ -176,11 +197,7 @@
             opacity: 0.9;
         }
 
-        .hero-meta strong {
-            color: #fee2e2;
-        }
-
-        /* Sections */
+        /* Cards */
         section {
             margin-bottom: 20px;
         }
@@ -199,10 +216,8 @@
             height: 9px;
             border-radius: 2px;
             background: var(--rcs-red);
-            box-shadow: 0 0 0 2px rgba(220,38,38,0.25);
         }
 
-        /* News cards */
         .news-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -210,60 +225,16 @@
         }
 
         .news-card {
-            background: #ffffff;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 14px 14px 13px;
             box-shadow: 0 4px 10px rgba(15,23,42,0.08);
-            border: 1px solid #e5e7eb;
-            transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.1s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .news-card::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--rcs-red), var(--rcs-red-dark));
-        }
-
-        .news-card:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 18px rgba(15,23,42,0.15);
-            border-color: #fecaca;
-        }
-
-        .news-tag {
-            display: inline-block;
-            font-size: 11px;
-            padding: 3px 8px 3px 18px;
-            border-radius: 999px;
-            background: #fee2e2;
-            color: var(--rcs-red-dark);
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            position: relative;
-        }
-
-        .news-tag::before {
-            content: "";
-            position: absolute;
-            left: 7px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: var(--rcs-red-dark);
         }
 
         .news-title {
             font-size: 15px;
             font-weight: 700;
-            margin-bottom: 4px;
         }
 
         .news-meta {
@@ -274,7 +245,6 @@
 
         .news-desc {
             font-size: 13px;
-            color: #374151;
         }
 
         /* Sidebar */
@@ -285,49 +255,11 @@
         }
 
         .side-card {
-            background: #ffffff;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 14px;
             box-shadow: 0 4px 10px rgba(15,23,42,0.08);
-            border: 1px solid #e5e7eb;
-        }
-
-        .side-card h3 {
-            font-size: 15px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .side-card ul {
-            list-style: none;
-            font-size: 13px;
-        }
-
-        .side-card li + li {
-            margin-top: 4px;
-        }
-
-        .pill {
-            display: inline-block;
-            padding: 2px 7px;
-            border-radius: 999px;
-            background: #fee2e2;
-            color: var(--rcs-red-dark);
-            font-size: 11px;
-            margin-left: 6px;
-            text-transform: uppercase;
-        }
-
-        .note {
-            font-size: 11px;
-            color: var(--rcs-gray);
-            margin-top: 8px;
-        }
-
-        .small-divider {
-            margin: 8px 0;
-            height: 1px;
-            background: #e5e7eb;
         }
 
         /* Footer */
@@ -340,21 +272,9 @@
             text-align: center;
         }
 
-        footer span {
-            opacity: 0.9;
-        }
-
-        footer strong {
-            color: var(--rcs-red-dark);
-        }
-
         @media (max-width: 800px) {
             main {
                 grid-template-columns: 1fr;
-            }
-
-            header {
-                position: static;
             }
 
             .nav-links {
@@ -376,40 +296,38 @@
             </div>
         </div>
 
-        <!-- UPDATED NAVBAR WITH SOCIAL LINKS -->
+        <!-- NAVBAR WITH ICONS + DARK MODE -->
         <nav class="nav-links">
             <a href="#latest">News</a>
             <a href="#events">Events</a>
             <a href="#athletics">Athletics</a>
             <a href="#clubs">Clubs</a>
 
-            <!-- Social Media -->
-            <a href="https://www.facebook.com/RichmondChristianSchool" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://x.com/RCSAll4Him?s=20" target="_blank" rel="noopener noreferrer">X</a>
-            <a href="https://www.instagram.com/rcsall4him/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://www.youtube.com/channel/UC6HO_Il_FgS3Rq79-mMpfbQ" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <!-- Social Icons -->
+            <a href="https://www.facebook.com/RichmondChristianSchool" target="_blank">📘 Facebook</a>
+            <a href="https://x.com/RCSAll4Him?s=20" target="_blank">X</a>
+            <a href="https://www.instagram.com/rcsall4him/" target="_blank">📸 Instagram</a>
+            <a href="https://www.youtube.com/channel/UC6HO_Il_FgS3Rq79-mMpfbQ" target="_blank">▶️ YouTube</a>
+
+            <!-- Dark mode toggle -->
+            <span id="themeToggle" class="toggle-btn">🌙</span>
         </nav>
     </div>
 </header>
 
 <main>
     <div>
-        <!-- HERO -->
         <section class="hero">
             <div class="hero-tag">
                 <span class="dot"></span> Official Student News • Warriors
             </div>
             <h1>Welcome to RCS Warriors News</h1>
-            <p>
-                The central hub for announcements, events, athletics, and stories from
-                <strong>Richmond Christian School</strong>.
-            </p>
+            <p>The central hub for announcements, events, athletics, and stories from <strong>Richmond Christian School</strong>.</p>
             <div class="hero-meta">
                 Last updated: <strong>December 3, 2025</strong> • Home of the Warriors
             </div>
         </section>
 
-        <!-- LATEST NEWS -->
         <section id="latest">
             <h2 class="section-title">
                 <span class="dot"></span> Latest RCS News
@@ -417,18 +335,14 @@
 
             <div class="news-grid">
                 <article class="news-card">
-                    <div class="news-tag">School Wide</div>
                     <h3 class="news-title">RCS Website</h3>
                     <div class="news-meta">Posted by RCS Office • Dec 3, 2025</div>
-                    <p class="news-desc">
-                        We now have this website.
-                    </p>
+                    <p class="news-desc">We now have this website.</p>
                 </article>
             </div>
         </section>
     </div>
 
-    <!-- SIDEBAR -->
     <aside>
         <section id="events" class="side-card">
             <h3>Upcoming Events</h3>
@@ -444,13 +358,11 @@
             <ul>
                 <li>SWIM - TES Kick-off Meet • <em>Friday, December 5, 2025</em></li>
             </ul>
-            <div class="small-divider"></div>
         </section>
 
         <section id="clubs" class="side-card">
             <h3>Clubs & Activities</h3>
             <ul>
-                <li>Clubs are removed<span class="pill">Featured</span></li>
                 <li>Clubs are removed</li>
             </ul>
         </section>
@@ -458,22 +370,21 @@
         <section class="side-card">
             <h3>Submit a Story</h3>
             <p style="font-size:13px;">
-                Have an idea, event, or Warrior victory to share?
-                Talk to a teacher or the RCS office about submitting it to
-                <strong>RCS Warriors News</strong>.
+                Have an idea or Warrior victory to share?
+                Talk to a teacher or the RCS office about submitting it.
             </p>
         </section>
     </aside>
 </main>
 
-<!-- UPDATED FOOTER WITH SOCIAL LINKS -->
+<!-- FOOTER WITH ICONS -->
 <footer>
     <div style="margin-bottom:6px;">
         <strong>Follow Us:</strong><br>
-        <a href="https://www.facebook.com/RichmondChristianSchool" target="_blank" rel="noopener noreferrer">Facebook</a> •
-        <a href="https://x.com/RCSAll4Him?s=20" target="_blank" rel="noopener noreferrer">X</a> •
-        <a href="https://www.instagram.com/rcsall4him/" target="_blank" rel="noopener noreferrer">Instagram</a> •
-        <a href="https://www.youtube.com/channel/UC6HO_Il_FgS3Rq79-mMpfbQ" target="_blank" rel="noopener noreferrer">YouTube</a>
+        📘 <a href="https://www.facebook.com/RichmondChristianSchool" target="_blank">Facebook</a> •
+        <a href="https://x.com/RCSAll4Him?s=20" target="_blank">X</a> •
+        📸 <a href="https://www.instagram.com/rcsall4him/" target="_blank">Instagram</a> •
+        ▶️ <a href="https://www.youtube.com/channel/UC6HO_Il_FgS3Rq79-mMpfbQ" target="_blank">YouTube</a>
     </div>
 
     <span>
@@ -482,7 +393,24 @@
 </footer>
 
 <script>
+    // Auto-update year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Dark mode toggle
+    const toggle = document.getElementById("themeToggle");
+    const currentTheme = localStorage.getItem("theme");
+
+    if (currentTheme === "dark") {
+        document.body.classList.add("dark");
+        toggle.textContent = "☀️";
+    }
+
+    toggle.onclick = () => {
+        document.body.classList.toggle("dark");
+        const isDark = document.body.classList.contains("dark");
+        toggle.textContent = isDark ? "☀️" : "🌙";
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    };
 </script>
 
 </body>
