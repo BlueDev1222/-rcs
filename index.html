@@ -20,14 +20,12 @@
             --rcs-white: #f9fafb;
             --rcs-gray: #6b7280;
 
-            /* Light mode */
             --bg: #f3f4f6;
             --text: var(--rcs-black);
             --card-bg: #ffffff;
             --card-border: #e5e7eb;
         }
 
-        /* Dark Mode Theme */
         body.dark {
             --bg: #0f172a;
             --text: #e2e8f0;
@@ -44,14 +42,16 @@
         a {
             color: inherit;
             text-decoration: none;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
-        /* Navbar */
+        /* HEADER */
         header {
             background: radial-gradient(circle at top left, var(--rcs-red) 0, var(--rcs-black) 55%);
             color: var(--rcs-white);
             padding: 12px 24px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
             position: sticky;
             top: 0;
             z-index: 50;
@@ -63,6 +63,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
         }
 
         .logo {
@@ -70,7 +71,6 @@
             align-items: center;
             gap: 10px;
             font-weight: 700;
-            letter-spacing: 0.08em;
         }
 
         .logo-badge {
@@ -85,19 +85,6 @@
             justify-content: center;
             align-items: center;
             font-weight: 900;
-            font-size: 18px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-        }
-
-        .logo-text-main {
-            font-size: 15px;
-            text-transform: uppercase;
-        }
-
-        .logo-text-sub {
-            font-size: 11px;
-            text-transform: uppercase;
-            opacity: 0.8;
         }
 
         .nav-links {
@@ -107,24 +94,21 @@
             text-transform: uppercase;
         }
 
-        .nav-links a {
-            opacity: 0.85;
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-            text-decoration: underline;
-        }
-
-        /* Dark mode toggle button */
         .toggle-btn {
             cursor: pointer;
             font-size: 20px;
-            margin-left: 10px;
             user-select: none;
         }
 
-        /* Main layout */
+        /* MOBILE MENU BUTTON */
+        .menu-btn {
+            display: none;
+            font-size: 26px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* MAIN */
         main {
             max-width: 1100px;
             margin: 18px auto 32px;
@@ -134,126 +118,27 @@
             gap: 24px;
         }
 
-        /* Hero / top banner */
+        /* HERO */
         .hero {
             background:
                 linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.92)),
                 url("https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=1200")
                 center/cover no-repeat;
             color: var(--rcs-white);
-            padding: 22px 22px 20px;
+            padding: 22px;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(15,23,42,0.7);
             margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: "WARRIORS";
-            position: absolute;
-            right: 10px;
-            bottom: -8px;
-            font-size: 40px;
-            font-weight: 900;
-            letter-spacing: 0.3em;
-            color: rgba(248,250,252,0.04);
-        }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 3px 10px;
-            border-radius: 999px;
-            background: rgba(248,250,252,0.08);
-            font-size: 12px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(248,250,252,0.15);
-            text-transform: uppercase;
-        }
-
-        .hero-tag span.dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #22c55e;
-            box-shadow: 0 0 8px rgba(34,197,94,0.8);
         }
 
         .hero h1 {
             font-size: 28px;
-            margin-bottom: 6px;
         }
 
         .hero p {
             font-size: 14px;
-            opacity: 0.95;
         }
 
-        .hero-meta {
-            margin-top: 12px;
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        /* Cards */
-        section {
-            margin-bottom: 20px;
-        }
-
-        h2.section-title {
-            font-size: 18px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-transform: uppercase;
-        }
-
-        h2.section-title span.dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 2px;
-            background: var(--rcs-red);
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .news-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 14px 14px 13px;
-            box-shadow: 0 4px 10px rgba(15,23,42,0.08);
-        }
-
-        .news-title {
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .news-meta {
-            font-size: 11px;
-            color: var(--rcs-gray);
-            margin-bottom: 6px;
-        }
-
-        .news-desc {
-            font-size: 13px;
-        }
-
-        /* Sidebar */
-        aside {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
+        .news-card,
         .side-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -262,24 +147,46 @@
             box-shadow: 0 4px 10px rgba(15,23,42,0.08);
         }
 
-        /* Footer */
         footer {
-            max-width: 1100px;
-            margin: 0 auto 24px;
-            padding: 0 16px;
+            text-align: center;
             font-size: 11px;
             color: var(--rcs-gray);
-            text-align: center;
+            padding: 24px 16px;
         }
 
+        /* MOBILE FIXES */
         @media (max-width: 800px) {
             main {
                 grid-template-columns: 1fr;
             }
 
-            .nav-links {
-                display: none;
+            .menu-btn {
+                display: block;
             }
+
+            .nav-links {
+                position: absolute;
+                top: 64px;
+                right: 16px;
+                background: var(--card-bg);
+                border: 1px solid var(--card-border);
+                border-radius: 12px;
+                padding: 12px;
+                display: none;
+                flex-direction: column;
+                gap: 12px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+                z-index: 99;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 { font-size: 22px; }
+            .hero p { font-size: 13px; }
         }
     </style>
 </head>
@@ -291,134 +198,63 @@
         <div class="logo">
             <div class="logo-badge">W</div>
             <div>
-                <div class="logo-text-main">RCS Warriors News</div>
-                <div class="logo-text-sub">Richmond Christian School</div>
+                <div>RCS Warriors News</div>
+                <small>Richmond Christian School</small>
             </div>
         </div>
 
-        <!-- NAVBAR WITH ICONS + DARK MODE -->
-       <nav class="nav-links">
-    <a href="#latest">News</a>
-    <a href="events.html">Events</a>
-    <a href="athletics.html">Athletics</a>
-    <a href="clubs.html">Clubs</a>
-    <a href="calendar.html">Calendar</a>
+        <div class="menu-btn" id="menuBtn">☰</div>
 
-    <!-- Dark mode toggle -->
-    <span id="themeToggle" class="toggle-btn">🌙</span>
-</nav>
-        
+        <nav class="nav-links">
+            <a href="#latest">News</a>
+            <a href="events.html">Events</a>
+            <a href="athletics.html">Athletics</a>
+            <a href="clubs.html">Clubs</a>
+            <a href="calendar.html">Calendar</a>
+            <span id="themeToggle" class="toggle-btn">🌙</span>
+        </nav>
     </div>
 </header>
 
 <main>
     <div>
         <section class="hero">
-            <div class="hero-tag">
-                <span class="dot"></span> Official Student News • Warriors
-            </div>
             <h1>Welcome to RCS Warriors News</h1>
-            <p>The central hub for announcements, events, athletics, and stories from <strong>Richmond Christian School</strong>.</p>
-            <div class="hero-meta">
-                Last updated: <strong>December 3, 2025</strong> • Home of the Warriors
-            </div>
+            <p>The central hub for announcements, events, athletics, and stories.</p>
         </section>
 
         <section id="latest">
-            <h2 class="section-title">
-                <span class="dot"></span> Latest RCS News
-            </h2>
-
-            <div class="news-grid">
-                <article class="news-card">
-                    <h3 class="news-title">RCS Website</h3>
-                    <div class="news-meta">Posted by RCS Host • Dec 3, 2025</div>
-                    <p class="news-desc">We now have this website.</p>
-                </article>
-            </div>
-        </section>
-
-        </section>
-            <div class="news-grid">
-                <article class="news-card">
-                    <h3 class="news-title">RCS New Website</h3>
-                    <div class="news-meta">Posted by RCS Host • Dec 17, 2025</div>
-                    <p class="news-desc">We now run on the rcs.christmas website.</p>
-                </article>
+            <div class="news-card">
+                <h3>RCS Website</h3>
+                <small>Dec 17, 2025</small>
+                <p>We now run on the rcs.christmas website.</p>
             </div>
         </section>
     </div>
 
     <aside>
-        <section id="events" class="side-card">
+        <div class="side-card">
             <h3>Upcoming Events</h3>
             <ul>
-                <li><strong>Dec 18</strong> – MS/HS Exams (Early Release)</li>
-                <li><strong>Dec 19</strong> – No School Exams makeups</li>
-                <li><strong>Dec 19</strong> – End 2025-2026 - Q2</li>
-                <li><strong>Dec 20 - Jan 5</strong> – NO SCHOOL :D</li>
+                <li>Dec 18 – Exams</li>
+                <li>Dec 20 – Winter Break</li>
             </ul>
-        </section>
-
-     <!--   <section id="athletics" class="side-card">
-            <h3>Warriors Athletics</h3>
-            <ul>
-                <li>SWIM - TES Kick-off Meet • <em>Friday, December 5, 2025</em></li>
-            </ul>
-        </section>
-    -->
-        <section id="clubs" class="side-card">
-            <h3>Clubs & Activities</h3>
-            <ul>
-                <li>Clubs are removed</li>
-            </ul>
-        </section>
-
-        <section class="side-card">
-            <h3>Submit a Story</h3>
-            <p style="font-size:13px;">
-                Have an idea or Warrior victory to share?
-                Talk to a teacher or the RCS office about submitting it.
-            </p>
-        </section>
+        </div>
     </aside>
 </main>
 
-<!-- FOOTER WITH ICONS -->
 <footer>
-    <div style="margin-bottom:6px;">
-        <strong>Follow Us:</strong><br>
-        📘 <a href="https://www.facebook.com/RichmondChristianSchool" target="_blank">Facebook</a> •
-        <a href="https://x.com/RCSAll4Him?s=20" target="_blank">X</a> •
-        📸 <a href="https://www.instagram.com/rcsall4him/" target="_blank">Instagram</a> •
-        ▶️ <a href="https://www.youtube.com/channel/UC6HO_Il_FgS3Rq79-mMpfbQ" target="_blank">YouTube</a>
-    </div>
-
-    <span>
-        © <span id="year"></span> <strong>Richmond Christian School</strong> • RCS Warriors News.
-    </span>
-
-    <!-- Non-Discrimination Policy -->
-    <div style="margin-top:12px; font-size:10px; line-height:1.4; opacity:0.8;">
-        <strong>Notice of Non-Discrimination Policy:</strong>
-        Richmond Christian School admits students of any race, color, national or ethnic origin
-        to all the rights, privileges, programs, and activities generally accorded or made
-        available to students at the school. It does not discriminate on the basis of race,
-        color, national or ethnic origin in administration of its educational policies,
-        admissions policies, financial assistance, athletic programs, and other school
-        administered programs.
-    </div>
+    © <span id="year"></span> Richmond Christian School
 </footer>
 
 <script>
-    // Auto-update year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Dark mode toggle
     const toggle = document.getElementById("themeToggle");
-    const currentTheme = localStorage.getItem("theme");
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.querySelector(".nav-links");
 
-    if (currentTheme === "dark") {
+    if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark");
         toggle.textContent = "☀️";
     }
@@ -428,6 +264,10 @@
         const isDark = document.body.classList.contains("dark");
         toggle.textContent = isDark ? "☀️" : "🌙";
         localStorage.setItem("theme", isDark ? "dark" : "light");
+    };
+
+    menuBtn.onclick = () => {
+        navLinks.classList.toggle("show");
     };
 </script>
 
